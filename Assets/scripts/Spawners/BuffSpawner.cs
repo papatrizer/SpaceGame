@@ -7,6 +7,8 @@ public class BuffSpawner : MonoBehaviour
     public GameObject buff;
 
     public float cd;
+    public GameObject parent;
+
     private float currentCd;
     private float minX = -2;
     private float maxX = 2.5f;
@@ -19,7 +21,7 @@ public class BuffSpawner : MonoBehaviour
     {
         if (currentCd <= 0)
         {
-            Instantiate(buff, new Vector3(Random.Range(minX, maxX), 6), Quaternion.Euler(0, 0, 0));
+            Instantiate(buff, new Vector3(Random.Range(minX, maxX), 6), Quaternion.Euler(0, 0, 0), parent.transform);
             currentCd = cd;
         }
         else

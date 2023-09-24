@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bullet : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Bullet : MonoBehaviour
     public float lifetime;
     public int damage;
     private float currentTimer = 0;
+
+    
      
 
 
@@ -25,8 +28,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
-            Destroy(gameObject);
-            Player.score++;
+            Destroy(gameObject);          
         }
     }
     

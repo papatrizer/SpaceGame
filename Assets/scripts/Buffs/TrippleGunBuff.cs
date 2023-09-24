@@ -1,38 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TrippleGunBuff : MonoBehaviour
+public class TrippleGunBuff : Sound
 {
     public float speed;
     public float lifetime;
-    private float currentTimer = 0;
-    public float duration;
-    private float currentDuration = 0;
 
-    public GameObject player;
+    private float currentTimer = 0;
+    private Player player;
 
 
     private void Awake()
     {
-        player = GameObject.Find("player");
+        player = FindObjectOfType<Player>();
     }
 
     void Update()
     {
-        var noobGun = player.GetComponent<NoobGun>();
-        var trippleGun = player.GetComponent<TrippleGun>();
-        if(trippleGun.enabled)
-        {
-            currentDuration += Time.deltaTime;
-            if(currentDuration >= duration)
-            {
-                trippleGun.enabled = false;
-                noobGun.enabled = true;
-                currentDuration = 0;
-            }
-        }
-
         transform.Translate(Vector2.down * speed);
      
         currentTimer += Time.deltaTime;
@@ -41,15 +27,25 @@ public class TrippleGunBuff : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private IEnumerator WaitForBuffDuration()
+    {
+        player.ChangeWeapon(EWeapon.TrippleGun);
+        yield return new WaitForSeconds(3);
+        player.ChangeWeapon(EWeapon.NoobGun);
+        Destroy(gameObject);
+       
+    }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var noobGun = player.GetComponent<NoobGun>();
-        var trippleGun = player.GetComponent<TrippleGun>();
         if (other.gameObject.CompareTag("player"))
         {
-            noobGun.enabled = false;
-            trippleGun.enabled = true;
-            Destroy(gameObject);
+            StartCoroutine(WaitForBuffDuration());
+            PlaySound(sounds[0], 1);
+            this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

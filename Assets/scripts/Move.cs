@@ -8,7 +8,8 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     private Camera cam;
-    
+    public float speed;
+
     [SerializeField] InputActionReference moveInput;
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class Move : MonoBehaviour
             if (axis.y <= 0)
                 axis.y = 0;
         }
-        transform.Translate((axis/40));
+        transform.Translate(axis*speed);
         if (axis != Vector2.zero)
         {
          //  Debugger.Messages.Add("x", transform.position.x.ToString());

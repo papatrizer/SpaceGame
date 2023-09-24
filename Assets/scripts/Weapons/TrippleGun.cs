@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrippleGun : MonoBehaviour
+public class TrippleGun : Sound, IWeapon
 {
     public GameObject bullet;
-
     public float cd;
+
     private float currentCd;
-    private bool isFiring = true;
+    private bool isFiring;
 
     private void Update()
     {
@@ -17,7 +17,16 @@ public class TrippleGun : MonoBehaviour
            Fire();
         }
     }
+ 
+    public void StartFire()
+    {
+        isFiring = true;
+    }
 
+    public void StopFire()
+    {
+        isFiring = false;
+    }
     public void Fire()
     {
         if (currentCd <= 0)
@@ -25,6 +34,7 @@ public class TrippleGun : MonoBehaviour
             Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
             Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 25f));
             Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, -25f));
+            PlaySound(sounds[0], 1);            
             currentCd = cd;
         }
         else

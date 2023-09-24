@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class MenuView : MonoBehaviour, IMenuView
 {
+    public Text ScoreText; // toDo: вынести в отдельный класс  
+   
+
     public event Action StartButtonClicked;
     public event Action SettingsButtonClicked;
     public event Action ScoreButtonClicked;
@@ -15,7 +18,11 @@ public class MenuView : MonoBehaviour, IMenuView
     public Button SettingsButton;
     public Button ScoreButton;
 
-    
+
+    public void ShowScore(int score)
+    {
+        ScoreText.text = score.ToString();
+    }
 
     private void Awake()
     {

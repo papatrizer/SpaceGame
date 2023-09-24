@@ -2,16 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoobGun : MonoBehaviour, IWeapon
+public class NoobGun :Sound, IWeapon
 {
     public GameObject bullet;
-
     public float cd;
+   
+
+    
     private float currentCd;
+    private bool isFiring;
 
     private void Update()
     {
-        Fire();
+        if(isFiring)
+        {
+            Fire();
+        }
+    }
+
+   
+    public void StartFire()
+    {
+        isFiring = true;
+    }
+
+    public void StopFire()
+    {
+        isFiring = false;
     }
 
     public void Fire()
@@ -19,6 +36,7 @@ public class NoobGun : MonoBehaviour, IWeapon
         if (currentCd <= 0)
         {
             Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
+            PlaySound(sounds[0], 1);
             currentCd = cd;
         }
         else
