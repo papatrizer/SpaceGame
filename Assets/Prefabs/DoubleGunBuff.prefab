@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5317115100341631528}
   - component: {fileID: 3060596445318102299}
   m_Layer: 0
-  m_Name: TrippleBuff
+  m_Name: DoubleGunBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.13284399, g: 0.08503916, b: 0.8584906, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8278c8aba68461c4cadf13b272a0ed21, type: 3}
   speed: 0.008
   lifetime: 20
+  buffType: 2
 --- !u!82 &3060596445318102299
 AudioSource:
   m_ObjectHideFlags: 0

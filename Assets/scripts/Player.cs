@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public List<GameObject> guns;
     
-
-
     private IWeapon currentWeapon;
     private Dictionary<EWeapon, IWeapon> weapons = new Dictionary<EWeapon, IWeapon>();
     
@@ -22,6 +20,7 @@ public class Player : MonoBehaviour
     {       
         weapons.Add(EWeapon.NoobGun, guns[0].GetComponent<IWeapon>());
         weapons.Add(EWeapon.TrippleGun, guns[1].GetComponent<IWeapon>());
+        weapons.Add(EWeapon.DoubleGun, guns[2].GetComponent<IWeapon>());
         ChangeWeapon(EWeapon.NoobGun);
     }
 

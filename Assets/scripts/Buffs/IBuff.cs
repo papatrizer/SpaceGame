@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EWeapon 
+public interface IBuff 
 {
-    NoobGun,
-    TrippleGun,
-    DoubleGun
+    int Duration { get; set; }
+    EBuff BuffType { get; }
 }

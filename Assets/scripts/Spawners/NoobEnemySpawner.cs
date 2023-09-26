@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoobEnemySpawner : MonoBehaviour, IEnemy
 {
     public GameObject enemy;
-    public GameObject parent;
+    public Transform parent;
     public float cd;
 
     private float currentCd;
@@ -20,7 +20,7 @@ public class NoobEnemySpawner : MonoBehaviour, IEnemy
     {
         if (currentCd <= 0)
         {
-            Instantiate(enemy, new Vector3(Random.Range(minX, maxX), 6), Quaternion.Euler(0, 0, 0), parent.transform);
+            Instantiate(enemy, new Vector3(Random.Range(minX, maxX), 6), Quaternion.Euler(0, 0, 0), parent);
             currentCd = cd;                                                                                                                                                                  
         }
         else
